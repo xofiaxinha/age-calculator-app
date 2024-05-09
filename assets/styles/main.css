@@ -1,0 +1,50 @@
+@import url(reset.css);
+
+body{
+    background-color: lightgray;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+main{
+    background-color: white;
+    height: 65%;
+    width: 60%;
+    align-self: center;
+    border-radius: 10px;
+    padding: 20px;
+}
+.container{
+    display: flex;
+    letter-spacing: 2px;
+}
+#input-container{
+    display: flex;
+    gap: 30px;
+    width: 50%;
+    margin-right: 20px;
+    font-size: 2rem;
+}
+#input-container .input{
+    width: 100%;
+}
+#input-container input{
+    width: 90%;
+    padding: 10px;
+    font-size: 1.5rem;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+#calculate-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: purple;
+    border: none;
+    cursor: pointer;
+}
+#result-container{
+    flex-direction: column;
+    font-size: 4rem;
+}
