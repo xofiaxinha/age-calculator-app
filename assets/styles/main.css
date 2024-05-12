@@ -6,14 +6,15 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: 'Poppins', sans-serif;
 }
 main{
     background-color: white;
-    height: 65%;
-    width: 60%;
+    height: 60%;
+    width: 55%;
     align-self: center;
     border-radius: 10px;
-    padding: 20px;
+    padding: 40px;
 }
 .container{
     display: flex;
@@ -21,30 +22,46 @@ main{
 }
 #input-container{
     display: flex;
-    gap: 30px;
+    justify-content: space-between;
+    gap: 15px;
     width: 50%;
-    margin-right: 20px;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 #input-container .input{
     width: 100%;
 }
-#input-container input{
-    width: 90%;
+.input input{
+    width: 60%;
     padding: 10px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     border: 1px solid lightgray;
     border-radius: 5px;
 }
+#button-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+}
+hr{
+    border: 2px solid lightgray;
+    width: 100%;
+}
 #calculate-button{
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    border: 5px solid white;
     background-color: purple;
-    border: none;
     cursor: pointer;
+    position: relative;
+    top: -35px;
+    left: 95%;
+    z-index: 1;
 }
 #result-container{
     flex-direction: column;
     font-size: 4rem;
+    font-style: italic;
+    font-weight: bold;
 }

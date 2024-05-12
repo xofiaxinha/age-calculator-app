@@ -1,3 +1,30 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url(../fonts/Poppins-Regular.ttf);
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url(../fonts/Poppins-Bold.ttf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url(../fonts/Poppins-ExtraBold.ttf);
+    font-weight: bolder;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url(../fonts/Poppins-Italic.ttf);
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url(../fonts/Poppins-BoldItalic.ttf);
+    font-style: italic;
+    font-weight: bold;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
