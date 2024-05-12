@@ -5,63 +5,95 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     font-family: 'Poppins', sans-serif;
+    font-size: .5rem;
+    font-weight: normal;
 }
 main{
     background-color: white;
-    height: 60%;
+    height: 40%;
     width: 55%;
-    align-self: center;
-    border-radius: 10px;
-    padding: 40px;
+    margin: 7rem auto;
+    border-radius: 20px 20px 60px 20px;
+    padding: 30px;
 }
 .container{
     display: flex;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
 }
 #input-container{
     display: flex;
     justify-content: space-between;
-    gap: 15px;
-    width: 50%;
-    font-size: 1rem;
+    gap: 30px;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: .7rem;
+    color: darkgray;
 }
 #input-container .input{
     width: 100%;
 }
-.input input{
-    width: 60%;
+input{
+    width: 80%;
     padding: 10px;
-    font-size: 1.2rem;
-    border: 1px solid lightgray;
+    border: 1px solid darkgray;
+    border-width: 1px;
     border-radius: 5px;
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.empty-input{
+    border: 1px solid red;
+    color: red;
+}
+.empty-text{
+    color: red;
+    font-family: 'Poppins', sans-serif;
 }
 #button-container{
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 30px;
     position: relative;
 }
 hr{
-    border: 2px solid lightgray;
+    border: 1px solid darkgray;
     width: 100%;
 }
 #calculate-button{
-    width: 60px;
-    height: 60px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
-    border: 5px solid white;
+    border: none;
     background-color: purple;
     cursor: pointer;
     position: relative;
-    top: -35px;
-    left: 95%;
+    right: 40%;
+    left: 40%;
+    bottom: 1.5rem;
     z-index: 1;
 }
+#calculate-button img{
+    width: 1.7rem;
+    height: 1.7rem;
+}
 #result-container{
+    font-size: 2rem;
     flex-direction: column;
-    font-size: 4rem;
     font-style: italic;
     font-weight: bold;
+}
+#result-container span{
+    color: purple;
+}
+.error-message{
+    color: red;
+    font-size: .5rem;
+    margin-top: 10px;
+    display: none;
+    font-style: italic;
 }
