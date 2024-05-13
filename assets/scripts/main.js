@@ -9,30 +9,32 @@ const input = {
     day_label: document.getElementById('day-label'),
     month_label: document.getElementById('month-label'),
     year_label: document.getElementById('year-label')
-}
+};
 const result = {
     year: document.getElementById('year-value'),
     month: document.getElementById('month-value'),
     day: document.getElementById('day-value')
-}
+};
 const dataExemplo = {
     data: new Date(),
     day: new Date().getDate(),
     month: new Date().getMonth() + 1,
     year: new Date().getFullYear()
-}
+};
 const errorMessages = {
     day: document.getElementById('error-d'),
     month: document.getElementById('error-m'),
     year: document.getElementById('error-y'),
     empty_message: "This field is required",
     invalid_messages: {
-        day: "Must be a valid day",
-        month: "Must be a valid month",
+        day_valid: "Must be a valid day",
+        day_future: "Must be a day in the past",
+        month_valid: "Must be a valid month",
+        month_future: "Must be a month in the past",
         year_invalid: "Must be a valid year",
         year_future: "Must be a year in the past"
     }
-}
+};
 function checkDay(day){
     if(day < 1 || day > 31){
         return false;
@@ -48,10 +50,16 @@ function checkDay(day){
     if((parseInt(input.month.value) === 4 || parseInt(input.month.value) === 6 || parseInt(input.month.value) === 9 || parseInt(input.month.value) === 11) && day > 30){
         return false;
     }
+    if(parseInt(input.year.value) === dataExemplo.year && parseInt(input.month.value) === dataExemplo.month && day > dataExemplo.day){
+        return false;
+    }
     return true;
 }
 function checkMonth(month){
     if(month < 1 || month > 12){
+        return false;
+    }
+    if(parseInt(input.year.value) === dataExemplo.year && month > dataExemplo.month){
         return false;
     }
     return true;
@@ -71,6 +79,9 @@ function validateAllInput(inputString){
     if(data.getDate() != dia || data.getMonth() != mes - 1 || data.getFullYear() != ano){
         return false;
     }
+    if(!checkDay(dia) || !checkMonth(mes) || !checkYear(ano)){
+        return false;
+    }
     return true;
 }
 function validateIndividualInputs(){
@@ -78,12 +89,23 @@ function validateIndividualInputs(){
     let month = parseInt(input.month.value);
     let year = parseInt(input.year.value);
     if(!checkDay(day)){
+        if(year == dataExemplo.year && month == dataExemplo.month && day > dataExemplo.day){
+            showErrorMessage(errorMessages.day, errorMessages.invalid_messages.day_future);
+            inputEmpty(input.day, input.day_label);
+        }
+        else{
         showErrorMessage(errorMessages.day, errorMessages.invalid_messages.day);
-        inputEmpty(input.day, input.day_label);
+        inputEmpty(input.day, input.day_label);}
     }
     if(!checkMonth(month)){
-        showErrorMessage(errorMessages.month, errorMessages.invalid_messages.month);
-        inputEmpty(input.month, input.month_label);
+        if(year == dataExemplo.year && month > dataExemplo.month){
+            showErrorMessage(errorMessages.month, errorMessages.invalid_messages.month_future);
+            inputEmpty(input.month, input.month_label);
+        }
+        else{
+            showErrorMessage(errorMessages.month, errorMessages.invalid_messages.month);
+            inputEmpty(input.month, input.month_label);
+        }
     }
     if(!checkYear(year)){
         if(year > dataExemplo.year){
@@ -95,7 +117,6 @@ function validateIndividualInputs(){
             inputEmpty(input.year, input.year_label);
         }
     }
-
 }
 function showErrorMessage(errorMessage, message){
     errorMessage.textContent = message;
