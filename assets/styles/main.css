@@ -1,7 +1,17 @@
 @import url(reset.css);
 
+:root{
+    --red: #CB3640;
+    --white: #EFF1ED;
+    --black: #0C090D;
+    --light-gray: #D2D3D4;
+    --violet: #6A66A3;
+    --dark-gray: #312e41;
+    --medium-gray: #6E707A;
+}
+
 body{
-    background-color: lightgray;
+    background-color: var(--light-gray);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,8 +20,8 @@ body{
     font-weight: normal;
 }
 main{
-    background-color: white;
-    height: 40%;
+    background-color: var(--white);
+    height: 50%;
     width: 55%;
     margin: 7rem auto;
     border-radius: 20px 20px 60px 20px;
@@ -24,11 +34,12 @@ main{
 #input-container{
     display: flex;
     justify-content: space-between;
-    gap: 30px;
+    gap: 20px;
     width: 100%;
     margin-top: 1rem;
     font-size: .7rem;
-    color: darkgray;
+    font-weight: bold;
+    color: var(--dark-gray);
 }
 #input-container .input{
     width: 100%;
@@ -36,22 +47,26 @@ main{
 input{
     width: 80%;
     padding: 10px;
-    border: 1px solid darkgray;
+    border: 1px solid var(--light-gray);
     border-width: 1px;
     border-radius: 5px;
     margin-top: 5px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
+    color: var(--black)
 }
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+input:focus, input:active{
+    border: 1px solid var(--violet);
+    outline: 1px solid var(--violet);
+}
 .empty-input{
-    border: 1px solid red;
-    color: red;
+    border: 1px solid var(--red);
 }
 .empty-text{
-    color: red;
+    color: var(--red);
     font-family: 'Poppins', sans-serif;
 }
 #button-container{
@@ -61,7 +76,7 @@ input[type=number]::-webkit-inner-spin-button {
     position: relative;
 }
 hr{
-    border: 1px solid darkgray;
+    border: 1px solid var(--light-gray);
     width: 100%;
 }
 #calculate-button{
@@ -69,13 +84,16 @@ hr{
     height: 3rem;
     border-radius: 50%;
     border: none;
-    background-color: purple;
+    background-color: var(--violet);
     cursor: pointer;
     position: relative;
     right: 40%;
     left: 40%;
     bottom: 1.5rem;
     z-index: 1;
+}
+#calculate-button:active{
+    background-color: var(--dark-gray);
 }
 #calculate-button img{
     width: 1.7rem;
@@ -88,12 +106,88 @@ hr{
     font-weight: bold;
 }
 #result-container span{
-    color: purple;
+    color: var(--violet);
 }
 .error-message{
-    color: red;
+    color: var(--red);
     font-size: .5rem;
     margin-top: 10px;
     display: none;
     font-style: italic;
+}
+.attribution{
+    margin-bottom: 20px;
+}
+.attribution p{
+    color: var(--black);
+    font-weight: bold;
+}
+a, a:visited{
+    color: var(--violet);
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+@media (min-width: 768px) {
+    main{
+        height: 65%;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding: 50px;
+    }
+    #input-container{
+        font-size: 1rem;
+        margin-top: 0px;
+        gap: 30px;
+    }
+    #input-container input{
+        font-size: 1.1rem;
+    }
+    #button-container{
+        margin-top: 40px;
+    }
+    #calculate-button{
+        width: 3.5rem;
+        height: 3.5rem;
+        left: 95%;
+        top: -2rem;
+    }
+    #result-container{
+        font-size: 2rem;
+    }
+    .error-message{
+        font-size: .8rem;
+    }
+}
+
+@media (min-width: 900px) {
+    main{
+        height: 65%;
+        margin-top: auto;
+        margin-bottom: auto;
+        padding: 50px;
+    }
+    #input-container{
+        margin-top: 40px;
+        font-size: 1.2rem;
+    }
+    #input-container input{
+        font-size: 1.3rem;
+    }
+    #button-container{
+        margin-top: 50px;
+    }
+    #calculate-button{
+        width: 3.5rem;
+        height: 3.5rem;
+        left: 95%;
+        top: -2rem;
+    }
+    #result-container{
+        font-size: 3rem;
+    }
+    .error-message{
+        font-size: .8rem;
+    }
 }
