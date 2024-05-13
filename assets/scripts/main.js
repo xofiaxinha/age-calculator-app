@@ -37,6 +37,17 @@ function checkDay(day){
     if(day < 1 || day > 31){
         return false;
     }
+    if(parseInt(input.month.value) === 2){
+        if(day === 29 && parseInt(input.year.value) % 4 === 0){
+            return false;
+        }
+        if(day > 28){
+            return false;
+        }
+    }
+    if((parseInt(input.month.value) === 4 || parseInt(input.month.value) === 6 || parseInt(input.month.value) === 9 || parseInt(input.month.value) === 11) && day > 30){
+        return false;
+    }
     return true;
 }
 function checkMonth(month){
@@ -67,7 +78,6 @@ function validateIndividualInputs(){
     let month = parseInt(input.month.value);
     let year = parseInt(input.year.value);
     if(!checkDay(day)){
-        console.log('entrou');
         showErrorMessage(errorMessages.day, errorMessages.invalid_messages.day);
         inputEmpty(input.day, input.day_label);
     }
@@ -140,9 +150,9 @@ function checkAllInput() {
     return true;
 }
 function calculateAge(){
-    let years = dataExemplo.year - input.year.value;
-    let months = dataExemplo.month - input.month.value;
-    let days = dataExemplo.day - input.day.value;
+    let years = dataExemplo.year - parseInt(input.year.value);
+    let months = dataExemplo.month - parseInt(input.month.value);
+    let days = dataExemplo.day - parseInt(input.day.value);
 
     if (days < 0) {
         days = 30 + days;
