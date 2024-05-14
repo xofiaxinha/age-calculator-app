@@ -92,7 +92,7 @@ hr{
     bottom: 1.5rem;
     z-index: 1;
 }
-#calculate-button:active{
+#calculate-button:active, #calculate-button:focus, #calculate-button:hover{
     background-color: var(--dark-gray);
 }
 #calculate-button img{

@@ -77,7 +77,6 @@ function validateAllInput(inputString){
     let ano = parseInt(partesData[2]);
     let data = new Date(ano, mes - 1, dia);
     if(data.getDate() != dia || data.getMonth() != mes - 1 || data.getFullYear() != ano){
-        console.log(data.getFullYear(), ano);
         return false;
     }
     if(!checkDay(dia) || !checkMonth(mes) || !checkYear(ano)){
@@ -92,30 +91,30 @@ function validateIndividualInputs(){
     if(!checkDay(day)){
         if(year == dataExemplo.year && month == dataExemplo.month && day > dataExemplo.day){
             showErrorMessage(errorMessages.day, errorMessages.invalid_messages.day_future);
-            inputEmpty(input.day, input.day_label);
+            inputError(input.day, input.day_label);
         }
         else{
         showErrorMessage(errorMessages.day, errorMessages.invalid_messages.day_invalid);
-        inputEmpty(input.day, input.day_label);}
+        inputError(input.day, input.day_label);}
     }
     if(!checkMonth(month)){
         if(year == dataExemplo.year && month > dataExemplo.month){
             showErrorMessage(errorMessages.month, errorMessages.invalid_messages.month_future);
-            inputEmpty(input.month, input.month_label);
+            inputError(input.month, input.month_label);
         }
         else{
             showErrorMessage(errorMessages.month, errorMessages.invalid_messages.month_invalid);
-            inputEmpty(input.month, input.month_label);
+            inputError(input.month, input.month_label);
         }
     }
     if(!checkYear(year)){
         if(year > dataExemplo.year){
             showErrorMessage(errorMessages.year, errorMessages.invalid_messages.year_future);
-            inputEmpty(input.year, input.year_label);
+            inputError(input.year, input.year_label);
         }
         else{
             showErrorMessage(errorMessages.year, errorMessages.invalid_messages.year_invalid);
-            inputEmpty(input.year, input.year_label);
+            inputError(input.year, input.year_label);
         }
     }
 }
@@ -132,9 +131,9 @@ function hideAllErrorMessages(){
     hideErrorMessage(errorMessages.year);
 }
 function normalInput(){
-    inputNotEmpty(input.day, document.getElementById('day-label'));
-    inputNotEmpty(input.month, document.getElementById('month-label'));
-    inputNotEmpty(input.year, document.getElementById('year-label'));
+    inputNormal(input.day, document.getElementById('day-label'));
+    inputNormal(input.month, document.getElementById('month-label'));
+    inputNormal(input.year, document.getElementById('year-label'));
 }
 function clearResult(){
     result.year.textContent = '--';
@@ -142,29 +141,29 @@ function clearResult(){
     result.day.textContent = '--';
 
 }
-function inputEmpty(input, label){
+function inputError(input, label){
     input.classList.add('empty-input');
     label.classList.add('empty-text');
 }
-function inputNotEmpty(input, label){
+function inputNormal(input, label){
     input.classList.remove('empty-input');
     label.classList.remove('empty-text');
 }
-function checkInput(valueInput, errorMessage, label){
+function showEmptyInput(valueInput, errorMessage, label){
     if(valueInput.value === ''){
         showErrorMessage(errorMessage, errorMessages.empty_message);
-        inputEmpty(valueInput, label);
+        inputError(valueInput, label);
         return;
     }
-    inputNotEmpty(valueInput, label);
+    inputNormal(valueInput, label);
 }
 function checkAllInput() {
     hideAllErrorMessages();
     normalInput();
     if(input.day.value === '' || input.month.value === '' || input.year.value === '') {
-        checkInput(input.day, errorMessages.day, input.day_label);
-        checkInput(input.month, errorMessages.month, input.month_label);
-        checkInput(input.year, errorMessages.year, input.year_label);
+        showEmptyInput(input.day, errorMessages.day, input.day_label);
+        showEmptyInput(input.month, errorMessages.month, input.month_label);
+        showEmptyInput(input.year, errorMessages.year, input.year_label);
         return false;
     }
     if(!validateAllInput(input.inputToString())){
