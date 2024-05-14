@@ -27,9 +27,9 @@ const errorMessages = {
     year: document.getElementById('error-y'),
     empty_message: "This field is required",
     invalid_messages: {
-        day_valid: "Must be a valid day",
+        day_invalid: "Must be a valid day",
         day_future: "Must be a day in the past",
-        month_valid: "Must be a valid month",
+        month_invalid: "Must be a valid month",
         month_future: "Must be a month in the past",
         year_invalid: "Must be a valid year",
         year_future: "Must be a year in the past"
@@ -65,7 +65,7 @@ function checkMonth(month){
     return true;
 }
 function checkYear(year){
-    if(year < 0 || year > dataExemplo.year){
+    if(year < 100 || year > dataExemplo.year){
         return false;
     }
     return true;
@@ -77,6 +77,7 @@ function validateAllInput(inputString){
     let ano = parseInt(partesData[2]);
     let data = new Date(ano, mes - 1, dia);
     if(data.getDate() != dia || data.getMonth() != mes - 1 || data.getFullYear() != ano){
+        console.log(data.getFullYear(), ano);
         return false;
     }
     if(!checkDay(dia) || !checkMonth(mes) || !checkYear(ano)){
@@ -94,7 +95,7 @@ function validateIndividualInputs(){
             inputEmpty(input.day, input.day_label);
         }
         else{
-        showErrorMessage(errorMessages.day, errorMessages.invalid_messages.day);
+        showErrorMessage(errorMessages.day, errorMessages.invalid_messages.day_invalid);
         inputEmpty(input.day, input.day_label);}
     }
     if(!checkMonth(month)){
@@ -103,7 +104,7 @@ function validateIndividualInputs(){
             inputEmpty(input.month, input.month_label);
         }
         else{
-            showErrorMessage(errorMessages.month, errorMessages.invalid_messages.month);
+            showErrorMessage(errorMessages.month, errorMessages.invalid_messages.month_invalid);
             inputEmpty(input.month, input.month_label);
         }
     }
@@ -158,6 +159,8 @@ function checkInput(valueInput, errorMessage, label){
     inputNotEmpty(valueInput, label);
 }
 function checkAllInput() {
+    hideAllErrorMessages();
+    normalInput();
     if(input.day.value === '' || input.month.value === '' || input.year.value === '') {
         checkInput(input.day, errorMessages.day, input.day_label);
         checkInput(input.month, errorMessages.month, input.month_label);
@@ -191,8 +194,6 @@ function calculateAge(){
 button.addEventListener('click', () => {
     if(checkAllInput()) {
         calculateAge();
-        hideAllErrorMessages();
-        normalInput();
     }
     else{
         clearResult();
